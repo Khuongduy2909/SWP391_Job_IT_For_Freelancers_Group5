@@ -23,7 +23,7 @@ public class DAO extends DBContext {
         String query = " select u.userID, u.username, u.password, u.email, u.status, r.roleID, r.role_name, u.LevelPass  \n"
                 + "                       from [User] u \n"
                 + "                       join Role r on u.roleID = r.roleID\n"
-                + "                       where u.username = 'freelacer' and u.password = 'abc123'";
+                + "                       where u.username = ? and u.password = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, user);

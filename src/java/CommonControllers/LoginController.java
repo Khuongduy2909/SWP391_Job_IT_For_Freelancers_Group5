@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Common.Controllers;
+package CommonControllers;
 
 import dal.DAO;
 import jakarta.servlet.ServletException;
@@ -79,9 +79,13 @@ public class LoginController extends HttpServlet {
             session.setAttribute("account", c);
             session.setMaxInactiveInterval(1000);
             if (c.isLevelPass() == true) {
-                response.sendRedirect("home");
-            }
-            else{
+                if (c.getRoleID().getRoleID() == 1 || c.getRoleID().getRoleID() == 2) {
+                    response.sendRedirect("dashboardAdmin");
+                } else {
+                    response.sendRedirect("home");
+                }
+            } else {
+
                 response.sendRedirect("changePassword");
             }
         }
